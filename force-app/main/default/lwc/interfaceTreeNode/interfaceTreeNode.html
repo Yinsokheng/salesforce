@@ -1,0 +1,57 @@
+<template>
+    <div class="tree-node">
+        <div
+            class="node-row"
+            onclick={handleSelect}
+            style={nodeStyle}>
+            <template if:true={hasChildren}>
+                <button class="expand-btn" onclick={handleToggle} title="Expand/Collapse">
+                    <template if:true={node.expanded}>
+                      <lightning-icon
+                        icon-name="utility:chevrondown" 
+                        size="x-small">
+                    </lightning-icon>
+                    </template>
+                    <template if:false={node.expanded}>
+                      <lightning-icon
+                        icon-name="utility:chevronright"
+                        size="x-small">
+                    </lightning-icon>
+                    </template>
+                    
+                </button>
+            </template>
+            <template if:true={isIntegration}>
+               <lightning-icon
+                class="node-icon"
+                icon-name="utility:folder"
+                size="x-small">
+              </lightning-icon>
+            </template>
+           <template if:false={isIntegration}>
+               <lightning-icon
+                class="node-icon"
+                icon-name="utility:file"
+                size="x-small">
+              </lightning-icon>
+            </template>
+            <span class="node-label">{node.name}</span>
+        </div>
+
+        <template if:true={node.loadingChildren}>
+            <div class="slds-p-left_large slds-p-vertical_x-small">
+                <lightning-spinner size="xx-small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={node.expanded}>
+            <ul class="child-list animate-expand">
+                <template for:each={node.children} for:item="child">
+                    <li key={child.id}>
+                        <c-interface-tree-node node={child}></c-interface-tree-node>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </div>
+</template>

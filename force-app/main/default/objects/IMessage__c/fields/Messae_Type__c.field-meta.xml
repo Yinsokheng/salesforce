@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Messae_Type__c</fullName>
+    <label>Messae Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>API Message</fullName>
+                <default>false</default>
+                <label>API Message</label>
+            </value>
+            <value>
+                <fullName>Request Message</fullName>
+                <default>false</default>
+                <label>Request Message</label>
+            </value>
+            <value>
+                <fullName>Response Message</fullName>
+                <default>false</default>
+                <label>Response Message</label>
+            </value>
+            <value>
+                <fullName>Event Message</fullName>
+                <default>false</default>
+                <label>Event Message</label>
+            </value>
+            <value>
+                <fullName>sObject Message</fullName>
+                <default>false</default>
+                <label>sObject Message</label>
+            </value>
+            <value>
+                <fullName>Basket Message</fullName>
+                <default>false</default>
+                <label>Basket Message</label>
+            </value>
+            <value>
+                <fullName>Dataload Message</fullName>
+                <default>false</default>
+                <label>Dataload Message</label>
+            </value>
+            <value>
+                <fullName>Agent Message</fullName>
+                <default>false</default>
+                <label>Agent Message</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

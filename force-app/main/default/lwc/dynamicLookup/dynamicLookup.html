@@ -1,0 +1,50 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label">{label}</label>
+
+        <div if:false={hasSelection} class="slds-combobox_container">
+            <div class={computedDropdownClass} role="combobox" aria-expanded={dropdownOpen}>
+                <div class="slds-combobox__form-element slds-input-has-icon_left">
+                    <lightning-icon icon-name="utility:search" size="xx-small"
+                        class="slds-input__icon slds-input__icon_left"></lightning-icon>
+
+                    <input type="text"
+                           class="slds-input"
+                           placeholder="Search..."
+                           oninput={handleSearch}
+                           onclick={openDropdown}
+                           value={searchText} />
+                </div>
+
+                <!-- Search dropdown -->
+                <template if:true={dropdownOpen}>
+                    <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid">
+                        <ul class="slds-listbox slds-listbox_vertical">
+                            <template for:each={results} for:item="rec">
+                                <li key={rec.id} class="slds-listbox__item" data-id={rec.id} onclick={selectItem}>
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity">
+                                        <lightning-icon size="small" icon-name={rec.icon}></lightning-icon>
+                                        <div class="slds-media__body">
+                                            <span class="slds-listbox__option-text">{rec.title}</span>
+                                            <span class="slds-listbox__option-meta">{rec.subtitle}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Selection pill -->
+        <template if:true={hasSelection}>
+            <lightning-pill label={selectedRecord.title}
+                            onremove={clearSelection}
+                            name={selectedRecord.id}
+                            class="slds-p-top_small">
+                <lightning-icon icon-name={selectedRecord.icon} size="small"></lightning-icon>
+            </lightning-pill>
+        </template>
+    </div>
+</template>

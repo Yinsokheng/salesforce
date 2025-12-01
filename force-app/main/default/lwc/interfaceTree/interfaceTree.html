@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Integration Tree" icon-name="utility:hierarchy">
+        <template if:true={loading}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-spinner size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={loading}>
+            <ul class="tree">
+                <template for:each={treeData} for:item="node">
+                    <li key={node.id}>
+                        <c-interface-tree-node
+                            node={node}
+                            ontoggle={handleToggle}
+                            onselect={handleSelect}>
+                        </c-interface-tree-node>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </lightning-card>
+
+    <c-dynamic-lookup
+        label="Select Account"
+        placeholder="Search Accounts..."
+        object-api-name="Account"
+        search-field="Name"
+        secondary-field="BillingCity"
+        icon="standard:account"
+        filter="Id != null"
+        technique-query="SOQL"
+        onselect={handleLookupSelection}>
+    </c-dynamic-lookup>
+
+</template>
